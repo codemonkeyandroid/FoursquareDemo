@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/venueOverviewFragment">
+
+    <fragment
+        android:id="@+id/venueOverviewFragment"
+        android:name="com.codemonkey.android.foursquaredemo.ui.overview.VenueOverviewFragment"
+        android:label="VenueOverviewFragment"
+        tools:layout="layout/venue_overview_fragment">
+        <action
+            android:id="@+id/action_venueOverviewFragment_to_venueDetailFragment"
+            app:destination="@id/venueDetailFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/venueDetailFragment"
+        android:name="com.codemonkey.android.foursquaredemo.ui.detail.VenueDetailFragment"
+        android:label="VenueDetailFragment">
+        <argument
+            android:name="VenueDetailFragmentArgs"
+            app:argType="string" />
+    </fragment>
+</navigation>

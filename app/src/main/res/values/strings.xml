@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FoursquareDemo</string>
+    <string name="type_location_hint">Type location</string>
+    <string name="submit_button">Submit</string>
+    <string name="no_data">No data</string>
+    <string name="likes">Likes: %s</string>
+    <string name="phonenr">PhoneNr: %s</string>
+</resources>
