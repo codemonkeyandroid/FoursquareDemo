@@ -35,7 +35,7 @@ class VenueOverviewFragment : Fragment(), VenuesAdapter.VenueAdapterListener {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupObservers()
-        binding.button.setOnClickListener { viewModel.load(binding.titletxt.text.toString()) }
+        binding.button.setOnClickListener { viewModel.load(binding.locationInput.text.toString()) }
     }
 
     private fun setupRecyclerView() {

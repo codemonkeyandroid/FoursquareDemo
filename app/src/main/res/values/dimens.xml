@@ -5,4 +5,6 @@
     <dimen name="cardCornerRadius">4dp</dimen>
     <dimen name="cardElevation">4dp</dimen>
     <dimen name="small_padding">8dp</dimen>
+    <dimen name="large_padding">24dp</dimen>
+    <dimen name="extra_large_padding">48dp</dimen>
 </resources>
