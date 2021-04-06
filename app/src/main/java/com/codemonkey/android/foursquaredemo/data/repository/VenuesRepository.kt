@@ -10,16 +10,17 @@ class VenuesRepository @Inject constructor(
     private val remoteDataSource: IVenuesRemoteDataSource,
     private val localVenueOverviewDataSource: VenueOverviewDao,
     private val localVenueDetailDataSource: VenueDetailDao
-) : IVenuesRepository{
+) : IVenuesRepository {
+
     override fun getVenues(query: String) = performGetOperation(
         databaseQuery = { localVenueOverviewDataSource.getVenues(query) },
-        networkCall = { remoteDataSource.getVenues(query)},
+        networkCall = { remoteDataSource.getVenues(query) },
         saveCallResult = { localVenueOverviewDataSource.insertAll(it.transformToVenueList(query)) }
     )
 
     override fun getVenueDetail(id: String) = performGetOperation(
-        databaseQuery = { localVenueDetailDataSource.getVenueDetail(id)},
-        networkCall = { remoteDataSource.getVenueDetail(id)},
-        saveCallResult = { localVenueDetailDataSource.insert(it.transformToVenueDetail())}
+        databaseQuery = { localVenueDetailDataSource.getVenueDetail(id) },
+        networkCall = { remoteDataSource.getVenueDetail(id) },
+        saveCallResult = { localVenueDetailDataSource.insert(it.transformToVenueDetail()) }
     )
 }

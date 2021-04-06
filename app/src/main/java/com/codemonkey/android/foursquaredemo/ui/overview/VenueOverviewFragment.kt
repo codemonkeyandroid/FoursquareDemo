@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemonkey.android.foursquaredemo.data.entities.Venue
 import com.codemonkey.android.foursquaredemo.databinding.VenueOverviewFragmentBinding
 import com.codemonkey.android.foursquaredemo.utils.Resource
 import com.codemonkey.android.foursquaredemo.utils.autoCleared
@@ -68,5 +67,4 @@ class VenueOverviewFragment : Fragment(), VenuesAdapter.VenueAdapterListener {
     override fun onVenueClicked(venueId: String) {
         findNavController().navigate(VenueOverviewFragmentDirections.actionVenueOverviewFragmentToVenueDetailFragment(venueId))
     }
-
 }

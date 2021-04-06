@@ -63,6 +63,10 @@ object AppModule {
         localVenueOverviewDataSource: VenueOverviewDao,
         localVenueDetailDataSource: VenueDetailDao
     ) =
-        VenuesRepository(remoteDataSource, localVenueOverviewDataSource, localVenueDetailDataSource) as IVenuesRepository
+        VenuesRepository(
+            remoteDataSource,
+            localVenueOverviewDataSource,
+            localVenueDetailDataSource
+        ) as IVenuesRepository
 
 }

@@ -30,6 +30,4 @@ class FourSquareActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return mNavigationController.navigateUp()
     }
-
-
 }
