@@ -11,13 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.codemonkey.android.foursquaredemo.R
-import com.codemonkey.android.foursquaredemo.data.entities.VenueDetail
 import com.codemonkey.android.foursquaredemo.databinding.VenueDetailFragmentBinding
 import com.codemonkey.android.foursquaredemo.utils.Resource
 import com.codemonkey.android.foursquaredemo.utils.autoCleared
-import com.codemonkey.android.foursquaredemo.utils.fromJSON
-import com.codemonkey.android.foursquaredemo.utils.parseFormatAddress
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +28,8 @@ class VenueDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = VenueDetailFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.vm = viewModel
         return binding.root
     }
 
@@ -50,7 +48,6 @@ class VenueDetailFragment : Fragment() {
         viewModel.venueDetail.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    it.data?.let { data -> bindVenueDetail(data) }
                     binding.progressBar.visibility = View.GONE
                 }
 
@@ -62,25 +59,11 @@ class VenueDetailFragment : Fragment() {
                 }
             }
         })
-    }
 
-    private fun bindVenueDetail(vDetail: VenueDetail) {
-        binding.apply {
-            titleText.text = vDetail.title
-            descriptionText.text = vDetail.description ?: ""
-            addressText.text =
-                vDetail.formattedAddress?.fromJSON()?.parseFormatAddress()
-            likesText.text = vDetail.likes?.let { getString(R.string.likes).format(it) } ?: ""
-            phoneNrText.text = vDetail.phoneNr?.let { getString(R.string.phonenr).format(it) } ?: ""
-
-            photoLayout.removeAllViews()
-            vDetail.photos?.fromJSON()?.let { bindPhotos(it) }
-        }
-
+        viewModel.photos.observe(viewLifecycleOwner, { bindPhotos(it) })
     }
 
     private fun bindPhotos(fromJSON: List<String>) {
-
         fromJSON.forEach {
             val viewId = View.generateViewId()
             val image = ImageView(requireContext()).apply {

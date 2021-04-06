@@ -39,6 +39,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/locationInput"
+            android:onClick="@{(view) -> vm.load(locationInput.getText().toString())}"
             />
 
         <androidx.recyclerview.widget.RecyclerView

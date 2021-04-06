@@ -28,6 +28,8 @@ class VenueOverviewFragment : Fragment(), VenuesAdapter.VenueAdapterListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = VenueOverviewFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.vm = viewModel
         return binding.root
     }
 
@@ -35,7 +37,6 @@ class VenueOverviewFragment : Fragment(), VenuesAdapter.VenueAdapterListener {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupObservers()
-        binding.button.setOnClickListener { viewModel.load(binding.locationInput.text.toString()) }
     }
 
     private fun setupRecyclerView() {

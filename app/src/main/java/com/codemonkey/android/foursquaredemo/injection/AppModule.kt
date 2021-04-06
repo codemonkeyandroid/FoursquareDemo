@@ -9,6 +9,8 @@ import com.codemonkey.android.foursquaredemo.data.remote.VenuesRemoteDataSource
 import com.codemonkey.android.foursquaredemo.data.remote.VenuesService
 import com.codemonkey.android.foursquaredemo.data.repository.IVenuesRepository
 import com.codemonkey.android.foursquaredemo.data.repository.VenuesRepository
+import com.codemonkey.android.foursquaredemo.utils.resources.IResourcesProvider
+import com.codemonkey.android.foursquaredemo.utils.resources.ResourcesProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -68,5 +70,9 @@ object AppModule {
             localVenueOverviewDataSource,
             localVenueDetailDataSource
         ) as IVenuesRepository
+
+    @Singleton
+    @Provides
+    fun provideResourcesProvider(@ApplicationContext appContext: Context) = ResourcesProvider(appContext) as IResourcesProvider
 
 }
